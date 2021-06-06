@@ -11,8 +11,41 @@
         </ul>
 
     </div>
+
+    <h5>Редактирование объекта</h5>
+    <div><br></div>
+    <button class="btn btn-danger" (click)="showEdit()">Редактировать</button>
+    <div><br></div>
+    <form *ngIf=isEdit>
+        <div class="from-group">
+            <input type="text" placeholder="Навзваине Машин" class="form-control" [(ngModel)]="name" name="name"><br>
+            <input type="text" placeholder="Модель Машин" class="form-control" [(ngModel)]="model" name="model"><br>
+            <input type="number" placeholder="Скорость" class="form-control" [(ngModel)]="speed" name="speed"><br>
+            <input type="text" placeholder="Цвет Машины" class="form-control" [(ngModel)]="colors.car" name="car"><br>
+            <input type="text" placeholder="Цвет Салона" class="form-control" [(ngModel)]="colors.salon"
+                name="salon"><br>
+            <input type="text" placeholder="Цвет Колес" class="form-control" [(ngModel)]="colors.wheels"
+                name="wheels"><br>
+        </div>
+    </form>
+
     <h5>Возможности Автомобиля</h5>
+    <form (submit)="addOpt(option.value)">
+        <div class="from-group">
+            <label for="option">Добовление Новой возможности</label>
+            <input type="text" id="option" placeholder="Введите что-то" class="form-control m-2" #option>
+            <button type="submit" class="btn btn-outline-success m-2">Добавить</button>
+        </div>
+    </form>
+
     <div class="alert alert-warning">
-        {{options}}
+        <ul>
+            <li *ngFor="let opt of options">{{opt}} <button class="btn btn-warning btn-sm"
+                    (click)="deleteOpt(opt)">x</button></li>
+        </ul>
     </div>
+    <h5>Выберите автомобиль</h5>
+    <button class="btn btn-danger" (click)="carSelect('bmw')">BMW</button>
+    <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
+    <button class="btn btn-info" (click)="carSelect('mer')">Mercedes</button>
 </div>
